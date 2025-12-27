@@ -1,0 +1,34 @@
+{
+	"name": "Parametrized_Dataset",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Parameterized_linkedService",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"Dbname": {
+					"value": "@dataset().Dbname",
+					"type": "Expression"
+				}
+			}
+		},
+		"parameters": {
+			"Dbname": {
+				"type": "string"
+			},
+			"TableName": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": {
+				"value": "@dataset().TableName",
+				"type": "Expression"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,9 @@
+{
+	"name": "TulalaADFTest",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "0b3d97f6-509d-42ce-8be3-1b1d8f836bd6",
+		"tenantId": "bee7a873-9ebe-4150-903e-71db21ed5006"
+	}
+}

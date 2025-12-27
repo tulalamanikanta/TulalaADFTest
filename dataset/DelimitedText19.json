@@ -1,0 +1,44 @@
+{
+	"name": "DelimitedText19",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"container": "input"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "bookId",
+				"type": "String"
+			},
+			{
+				"name": "BookName",
+				"type": "String"
+			},
+			{
+				"name": "AuthorName",
+				"type": "String"
+			},
+			{
+				"name": "AuthorAge",
+				"type": "String"
+			},
+			{
+				"name": "AuthoryCity",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

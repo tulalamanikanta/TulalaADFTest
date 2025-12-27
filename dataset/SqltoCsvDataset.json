@@ -1,0 +1,13 @@
+{
+	"name": "SqltoCsvDataset",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SqlToCsvDB",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
