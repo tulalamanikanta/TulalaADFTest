@@ -1,0 +1,333 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "TulalaADFTest"
+		},
+		"AzureBlobStorage1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage1'"
+		},
+		"AzureSqlDatabase1_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'AzureSqlDatabase1'"
+		},
+		"AzureSqlDatabase2_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'AzureSqlDatabase2'"
+		},
+		"Bulkcopy_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'Bulkcopy'"
+		},
+		"Lookeup_Linked_Service_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'Lookeup_Linked_Service'"
+		},
+		"New_linkedService_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'New_linkedService'"
+		},
+		"Parameterized_linkedService_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'Parameterized_linkedService'"
+		},
+		"SCDLinkService_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'SCDLinkService'"
+		},
+		"SqlToCsvDB_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'SqlToCsvDB'"
+		},
+		"AzureSqlDatabase1_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "testserver019.database.windows.net"
+		},
+		"AzureSqlDatabase1_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "TestDatabase"
+		},
+		"AzureSqlDatabase1_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "Manikanta"
+		},
+		"AzureSqlDatabase2_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "testserver019.database.windows.net"
+		},
+		"AzureSqlDatabase2_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "TestDatabase"
+		},
+		"AzureSqlDatabase2_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "Manikanta"
+		},
+		"Bulkcopy_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "testserver019.database.windows.net"
+		},
+		"Bulkcopy_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "TestDatabase"
+		},
+		"Bulkcopy_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "Manikanta"
+		},
+		"Lookeup_Linked_Service_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "testserver019.database.windows.net"
+		},
+		"Lookeup_Linked_Service_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "TestDatabase"
+		},
+		"Lookeup_Linked_Service_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "Manikanta"
+		},
+		"Parameterized_linkedService_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "testserver019.database.windows.net"
+		},
+		"Parameterized_linkedService_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "@{linkedService().Dbname}"
+		},
+		"Parameterized_linkedService_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "Manikanta"
+		},
+		"SCDLinkService_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "testserver019.database.windows.net"
+		},
+		"SCDLinkService_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "TestDatabase"
+		},
+		"SCDLinkService_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "Manikanta"
+		},
+		"SqlToCsvDB_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "testserver019.database.windows.net"
+		},
+		"SqlToCsvDB_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "TestDatabase"
+		},
+		"SqlToCsvDB_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "Manikanta"
+		},
+		"TmbblingTrigger_properties_pipeline_parameters_penddate": {
+			"type": "string",
+			"defaultValue": "@trigger().outputs.windowEndtime"
+		},
+		"TmbblingTrigger_properties_pipeline_parameters_pstartdate": {
+			"type": "string",
+			"defaultValue": "@trigger().outputs.windowstarttime"
+		},
+		"Trigger_csvtojson_properties_typeProperties_scope": {
+			"type": "string",
+			"defaultValue": "/subscriptions/7ca60eca-ee01-4833-ba12-b4e8bb194816/resourceGroups/ADFResourceGroup/providers/Microsoft.Storage/storageAccounts/tulalastorage"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "TulalaADFTest_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"AzureBlobStorage1_connectionString": {
+						"value": "[parameters('AzureBlobStorage1_connectionString')]"
+					},
+					"AzureSqlDatabase1_password": {
+						"value": "[parameters('AzureSqlDatabase1_password')]"
+					},
+					"AzureSqlDatabase2_password": {
+						"value": "[parameters('AzureSqlDatabase2_password')]"
+					},
+					"Bulkcopy_password": {
+						"value": "[parameters('Bulkcopy_password')]"
+					},
+					"Lookeup_Linked_Service_password": {
+						"value": "[parameters('Lookeup_Linked_Service_password')]"
+					},
+					"New_linkedService_connectionString": {
+						"value": "[parameters('New_linkedService_connectionString')]"
+					},
+					"Parameterized_linkedService_password": {
+						"value": "[parameters('Parameterized_linkedService_password')]"
+					},
+					"SCDLinkService_password": {
+						"value": "[parameters('SCDLinkService_password')]"
+					},
+					"SqlToCsvDB_password": {
+						"value": "[parameters('SqlToCsvDB_password')]"
+					},
+					"AzureSqlDatabase1_properties_typeProperties_server": {
+						"value": "[parameters('AzureSqlDatabase1_properties_typeProperties_server')]"
+					},
+					"AzureSqlDatabase1_properties_typeProperties_database": {
+						"value": "[parameters('AzureSqlDatabase1_properties_typeProperties_database')]"
+					},
+					"AzureSqlDatabase1_properties_typeProperties_userName": {
+						"value": "[parameters('AzureSqlDatabase1_properties_typeProperties_userName')]"
+					},
+					"AzureSqlDatabase2_properties_typeProperties_server": {
+						"value": "[parameters('AzureSqlDatabase2_properties_typeProperties_server')]"
+					},
+					"AzureSqlDatabase2_properties_typeProperties_database": {
+						"value": "[parameters('AzureSqlDatabase2_properties_typeProperties_database')]"
+					},
+					"AzureSqlDatabase2_properties_typeProperties_userName": {
+						"value": "[parameters('AzureSqlDatabase2_properties_typeProperties_userName')]"
+					},
+					"Bulkcopy_properties_typeProperties_server": {
+						"value": "[parameters('Bulkcopy_properties_typeProperties_server')]"
+					},
+					"Bulkcopy_properties_typeProperties_database": {
+						"value": "[parameters('Bulkcopy_properties_typeProperties_database')]"
+					},
+					"Bulkcopy_properties_typeProperties_userName": {
+						"value": "[parameters('Bulkcopy_properties_typeProperties_userName')]"
+					},
+					"Lookeup_Linked_Service_properties_typeProperties_server": {
+						"value": "[parameters('Lookeup_Linked_Service_properties_typeProperties_server')]"
+					},
+					"Lookeup_Linked_Service_properties_typeProperties_database": {
+						"value": "[parameters('Lookeup_Linked_Service_properties_typeProperties_database')]"
+					},
+					"Lookeup_Linked_Service_properties_typeProperties_userName": {
+						"value": "[parameters('Lookeup_Linked_Service_properties_typeProperties_userName')]"
+					},
+					"Parameterized_linkedService_properties_typeProperties_server": {
+						"value": "[parameters('Parameterized_linkedService_properties_typeProperties_server')]"
+					},
+					"Parameterized_linkedService_properties_typeProperties_database": {
+						"value": "[parameters('Parameterized_linkedService_properties_typeProperties_database')]"
+					},
+					"Parameterized_linkedService_properties_typeProperties_userName": {
+						"value": "[parameters('Parameterized_linkedService_properties_typeProperties_userName')]"
+					},
+					"SCDLinkService_properties_typeProperties_server": {
+						"value": "[parameters('SCDLinkService_properties_typeProperties_server')]"
+					},
+					"SCDLinkService_properties_typeProperties_database": {
+						"value": "[parameters('SCDLinkService_properties_typeProperties_database')]"
+					},
+					"SCDLinkService_properties_typeProperties_userName": {
+						"value": "[parameters('SCDLinkService_properties_typeProperties_userName')]"
+					},
+					"SqlToCsvDB_properties_typeProperties_server": {
+						"value": "[parameters('SqlToCsvDB_properties_typeProperties_server')]"
+					},
+					"SqlToCsvDB_properties_typeProperties_database": {
+						"value": "[parameters('SqlToCsvDB_properties_typeProperties_database')]"
+					},
+					"SqlToCsvDB_properties_typeProperties_userName": {
+						"value": "[parameters('SqlToCsvDB_properties_typeProperties_userName')]"
+					},
+					"Trigger_csvtojson_properties_typeProperties_scope": {
+						"value": "[parameters('Trigger_csvtojson_properties_typeProperties_scope')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "TulalaADFTest_ArmTemplate_1",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_1.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'TulalaADFTest_ArmTemplate_0')]"
+			]
+		},
+		{
+			"name": "TulalaADFTest_ArmTemplate_2",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_2.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'TulalaADFTest_ArmTemplate_1')]"
+			]
+		},
+		{
+			"name": "TulalaADFTest_ArmTemplate_3",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_3.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"TmbblingTrigger_properties_pipeline_parameters_penddate": {
+						"value": "[parameters('TmbblingTrigger_properties_pipeline_parameters_penddate')]"
+					},
+					"TmbblingTrigger_properties_pipeline_parameters_pstartdate": {
+						"value": "[parameters('TmbblingTrigger_properties_pipeline_parameters_pstartdate')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'TulalaADFTest_ArmTemplate_2')]"
+			]
+		}
+	]
+}

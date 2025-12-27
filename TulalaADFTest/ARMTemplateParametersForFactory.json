@@ -1,0 +1,108 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "TulalaADFTest"
+		},
+		"AzureBlobStorage1_connectionString": {
+			"value": ""
+		},
+		"AzureSqlDatabase1_password": {
+			"value": ""
+		},
+		"AzureSqlDatabase2_password": {
+			"value": ""
+		},
+		"Bulkcopy_password": {
+			"value": ""
+		},
+		"Lookeup_Linked_Service_password": {
+			"value": ""
+		},
+		"New_linkedService_connectionString": {
+			"value": ""
+		},
+		"Parameterized_linkedService_password": {
+			"value": ""
+		},
+		"SCDLinkService_password": {
+			"value": ""
+		},
+		"SqlToCsvDB_password": {
+			"value": ""
+		},
+		"AzureSqlDatabase1_properties_typeProperties_server": {
+			"value": "testserver019.database.windows.net"
+		},
+		"AzureSqlDatabase1_properties_typeProperties_database": {
+			"value": "TestDatabase"
+		},
+		"AzureSqlDatabase1_properties_typeProperties_userName": {
+			"value": "Manikanta"
+		},
+		"AzureSqlDatabase2_properties_typeProperties_server": {
+			"value": "testserver019.database.windows.net"
+		},
+		"AzureSqlDatabase2_properties_typeProperties_database": {
+			"value": "TestDatabase"
+		},
+		"AzureSqlDatabase2_properties_typeProperties_userName": {
+			"value": "Manikanta"
+		},
+		"Bulkcopy_properties_typeProperties_server": {
+			"value": "testserver019.database.windows.net"
+		},
+		"Bulkcopy_properties_typeProperties_database": {
+			"value": "TestDatabase"
+		},
+		"Bulkcopy_properties_typeProperties_userName": {
+			"value": "Manikanta"
+		},
+		"Lookeup_Linked_Service_properties_typeProperties_server": {
+			"value": "testserver019.database.windows.net"
+		},
+		"Lookeup_Linked_Service_properties_typeProperties_database": {
+			"value": "TestDatabase"
+		},
+		"Lookeup_Linked_Service_properties_typeProperties_userName": {
+			"value": "Manikanta"
+		},
+		"Parameterized_linkedService_properties_typeProperties_server": {
+			"value": "testserver019.database.windows.net"
+		},
+		"Parameterized_linkedService_properties_typeProperties_database": {
+			"value": "@{linkedService().Dbname}"
+		},
+		"Parameterized_linkedService_properties_typeProperties_userName": {
+			"value": "Manikanta"
+		},
+		"SCDLinkService_properties_typeProperties_server": {
+			"value": "testserver019.database.windows.net"
+		},
+		"SCDLinkService_properties_typeProperties_database": {
+			"value": "TestDatabase"
+		},
+		"SCDLinkService_properties_typeProperties_userName": {
+			"value": "Manikanta"
+		},
+		"SqlToCsvDB_properties_typeProperties_server": {
+			"value": "testserver019.database.windows.net"
+		},
+		"SqlToCsvDB_properties_typeProperties_database": {
+			"value": "TestDatabase"
+		},
+		"SqlToCsvDB_properties_typeProperties_userName": {
+			"value": "Manikanta"
+		},
+		"TmbblingTrigger_properties_pipeline_parameters_penddate": {
+			"value": "@trigger().outputs.windowEndtime"
+		},
+		"TmbblingTrigger_properties_pipeline_parameters_pstartdate": {
+			"value": "@trigger().outputs.windowstarttime"
+		},
+		"Trigger_csvtojson_properties_typeProperties_scope": {
+			"value": "/subscriptions/7ca60eca-ee01-4833-ba12-b4e8bb194816/resourceGroups/ADFResourceGroup/providers/Microsoft.Storage/storageAccounts/tulalastorage"
+		}
+	}
+}
